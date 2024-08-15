@@ -1,0 +1,24 @@
+{
+    "builds": [
+      {
+        "src": "resume/wsgi.py",
+        "use": "@vercel/python",
+        "config": { "maxLambdaSize": "15mb","runtime":"Python 3.12.1" }
+      },
+      {
+        "src": "build_files.sh",
+        "use": "@vercel/static-build"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/static/(.*)",
+        "dest": "staticfiles/$1"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "manage.py"
+      }
+    ]
+  }
+  
